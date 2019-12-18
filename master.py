@@ -9,7 +9,10 @@ x = 0
 def playgame(screen, font):
         global ingame
         global x
-        game.create(x, screen, font)
+        ingame = game.create(x, screen, font)
+        k = pygame.key.get_pressed()
+        if (k[pygame.K_l]):
+            pygame.draw.rect(screen, (255, 255, 255), ( 405, 55, 480/4 -10, 600/3 -10), 2)
 
 def creatmeno(screen, my_font):
         global ingame
@@ -25,13 +28,7 @@ def creatmeno(screen, my_font):
         cb6x6= (255, 255, 0)
         cbexit= (255, 255, 0)
 
-        k = pygame.key.get_pressed()
         mouse = pygame.mouse.get_pos()
-
-        my_font.render_to(screen, (20, 20), str(ingame), (255, 255, 0))
-
-        if (k[pygame.K_l]):
-            cb4x3= (255, 0, 0)
 
         #bottons code
         if (mouse[0]>590 and mouse[0]<690):  
