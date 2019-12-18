@@ -17,8 +17,12 @@ def create(x, screen, font):
                 crect=55 + j*c + j*10
                 if (mouse[0]>lrect and mouse[0]<(lrect + l) and mouse[1]>crect and mouse[1]<(crect + c)):
                     ccarta = (255, 255, 255)
-                else: ccarta = ( 9, 158, 9)
-                pygame.draw.rect(screen, ccarta, ( lrect, crect, l, c), 0)
+                    if (pygame.mouse.get_pressed()[0]):
+                        pygame.draw.rect(screen, ccarta, ( lrect, crect, l, c), 2) 
+                    else: pygame.draw.rect(screen, ccarta, ( lrect, crect, l, c), 0)
+                else: 
+                    ccarta = ( 9, 158, 9)
+                    pygame.draw.rect(screen, ccarta, ( lrect, crect, l, c), 0)
                 j=j+1
             i=i+1
 
