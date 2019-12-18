@@ -51,17 +51,35 @@ def main():
         #bottons code
         if (mouse[0]>590 and mouse[0]<690):  
             if (mouse[1]>240 and mouse[1]<277):
-                cb4x3 = (255, 0, 0)
+                cb4x3 = (255, 255, 255)
+                if (pygame.mouse.get_pressed()[0]):
+                    cb4x3= (255, 0, 0)
+                        
             if (mouse[1]>290 and mouse[1]<327):
-                cb4x4 = (255, 0, 0)
+                cb4x4 = (255, 255, 255)
+                if (pygame.mouse.get_pressed()[0]):
+                    cb4x4= (255, 0, 0)
+                        
             if (mouse[1]>340 and mouse[1]<377):
-                cb5x4 = (255, 0, 0)
+                cb5x4 = (255, 255, 255)
+                if (pygame.mouse.get_pressed()[0]):
+                    cb5x4= (255, 0, 0)
+                        
             if (mouse[1]>390 and mouse[1]<427):
-                cb6x5 = (255, 0, 0)
+                cb6x5 = (255, 255, 255)
+                if (pygame.mouse.get_pressed()[0]):
+                    cb6x5= (255, 0, 0)
+                        
             if (mouse[1]>440 and mouse[1]<477):
-                cb6x6 = (255, 0, 0)
+                cb6x6 = (255, 255, 255)
+                if (pygame.mouse.get_pressed()[0]):
+                    cb6x6= (255, 0, 0)
+                        
             if (mouse[1]>540 and mouse[1]<577):
-                cbexit = (255, 0, 0)
+                cbexit = (255, 255, 255)
+                if (pygame.mouse.get_pressed()[0]):
+                    cbexit= (255, 0, 0)
+                        
         
 
         #botton 4x3
