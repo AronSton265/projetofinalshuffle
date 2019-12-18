@@ -1,37 +1,20 @@
 # Import pygame into our program
 import pygame
 import pygame.freetype
+import game
 
-# Define a main function, just to keep things nice and tidy
-def main():
+ingame = False
+x = 0
 
-    # Initialize pygame, with the default parameters
-    pygame.init()
+def playgame(screen, font):
+        global ingame
+        global x
+        game.create(x, screen, font)
 
-    #resolution
-    res = (1280, 700)
-
-    #creation of the window and fontt
-    screen = pygame.display.set_mode(res)
-    my_font = pygame.freetype.Font("HOMOARAK.ttf", 24)
-
-    # Game loop, runs forever
-    while (True):
-        # Process OS events
-        for event in pygame.event.get():
-            # Checks if the user closed the window
-            if (event.type == pygame.QUIT):
-                # Exits the application immediately
-                exit()
-
-            if (event.type == pygame.KEYDOWN):
-                if(event.key == pygame.K_ESCAPE):
-                    exit()
-
-        # Clears the screen with a very dark blue (0, 0, 20)
-        screen.fill((0,0,20))
-
-        #main screen creation
+def creatmeno(screen, my_font):
+        global ingame
+        global x
+    #main screen creation
         my_font.render_to(screen, (298.5, 50), "Shuffle", (255, 255, 0),  None, pygame.freetype.STYLE_DEFAULT, 0, 100)
 
         #defenition of the collors
@@ -45,6 +28,8 @@ def main():
         k = pygame.key.get_pressed()
         mouse = pygame.mouse.get_pos()
 
+        my_font.render_to(screen, (20, 20), str(ingame), (255, 255, 0))
+
         if (k[pygame.K_l]):
             cb4x3= (255, 0, 0)
 
@@ -54,31 +39,41 @@ def main():
                 cb4x3 = (255, 255, 255)
                 if (pygame.mouse.get_pressed()[0]):
                     cb4x3= (255, 0, 0)
+                    x = 6
+                    ingame = True
                         
             if (mouse[1]>290 and mouse[1]<327):
                 cb4x4 = (255, 255, 255)
                 if (pygame.mouse.get_pressed()[0]):
                     cb4x4= (255, 0, 0)
+                    x = 8
+                    ingame = True
                         
             if (mouse[1]>340 and mouse[1]<377):
                 cb5x4 = (255, 255, 255)
                 if (pygame.mouse.get_pressed()[0]):
                     cb5x4= (255, 0, 0)
+                    x = 10
+                    ingame = True
                         
             if (mouse[1]>390 and mouse[1]<427):
                 cb6x5 = (255, 255, 255)
                 if (pygame.mouse.get_pressed()[0]):
                     cb6x5= (255, 0, 0)
+                    x = 15
+                    ingame = True
                         
             if (mouse[1]>440 and mouse[1]<477):
                 cb6x6 = (255, 255, 255)
                 if (pygame.mouse.get_pressed()[0]):
                     cb6x6= (255, 0, 0)
+                    x = 18
+                    ingame = True
                         
             if (mouse[1]>540 and mouse[1]<577):
                 cbexit = (255, 255, 255)
                 if (pygame.mouse.get_pressed()[0]):
-                    cbexit= (255, 0, 0)
+                    exit()
                         
         
 
@@ -106,6 +101,40 @@ def main():
         pygame.draw.rect(screen, cbexit, (590, 540, 100, 37), 2)
         my_font.render_to(screen, (598, 550), "Exit", cbexit,  None, pygame.freetype.STYLE_DEFAULT, 0, 30)
 
+# Define a main function, just to keep things nice and tidy
+def main():
+    global ingame
+
+    # Initialize pygame, with the default parameters
+    pygame.init()
+
+    #resolution
+    res = (1280, 700)
+
+    #creation of the window and fontt
+    screen = pygame.display.set_mode(res)
+    my_font = pygame.freetype.Font("HOMOARAK.ttf", 24)
+
+
+    # Game loop, runs forever
+    while (True):
+        # Process OS events
+        for event in pygame.event.get():
+            # Checks if the user closed the window
+            if (event.type == pygame.QUIT):
+                # Exits the application immediately
+                exit()
+
+            if (event.type == pygame.KEYDOWN):
+                if(event.key == pygame.K_ESCAPE):
+                    exit()
+
+        # Clears the screen with a very dark blue (0, 0, 20)
+        screen.fill((0,0,20))
+
+        if (ingame == False):
+            creatmeno(screen, my_font)
+        else: playgame(screen, my_font)
 
         pygame.display.flip()
 

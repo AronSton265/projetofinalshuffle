@@ -1,7 +1,7 @@
 import pygame
 import pygame.freetype
 
-def create(x, screen):
+def create(x, screen, font):
     if (x == 6):
         l=480/4 -10
         c=600/3 -10
@@ -70,41 +70,3 @@ def create(x, screen):
  
 
 
-def main():
-
-    # Initialize pygame, with the default parameters
-    pygame.init()
-
-    #resolution
-    res = (1280, 700)
-
-    #creation of the window and fontt
-    screen = pygame.display.set_mode(res)
-    my_font = pygame.freetype.Font("HOMOARAK.ttf", 24)
-
-    # Game loop, runs forever
-    while (True):
-        # Process OS events
-        for event in pygame.event.get():
-            # Checks if the user closed the window
-            if (event.type == pygame.QUIT):
-                # Exits the application immediately
-                exit()
-
-            if (event.type == pygame.KEYDOWN):
-                if(event.key == pygame.K_ESCAPE):
-                    exit()
-
-        # Clears the screen with a very dark blue (0, 0, 20)
-        screen.fill((0,0,20))
-
-        #main screen creation
-        #my_font.render_to(screen, (298.5, 50), "Shuffle", (255, 255, 0),  None, pygame.freetype.STYLE_DEFAULT, 0, 100)
-
-        x=(5*4)/2
-        create(x, screen)
-
-
-        pygame.display.flip()
-
-main()
