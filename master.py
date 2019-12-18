@@ -34,12 +34,35 @@ def main():
         #main screen creation
         my_font.render_to(screen, (298.5, 50), "Shuffle", (255, 255, 0),  None, pygame.freetype.STYLE_DEFAULT, 0, 100)
 
+        #defenition of the collors
         cb4x3= (255, 255, 0)
         cb4x4= (255, 255, 0)
         cb5x4= (255, 255, 0)
         cb6x5= (255, 255, 0)
         cb6x6= (255, 255, 0)
         cbexit= (255, 255, 0)
+
+        k = pygame.key.get_pressed()
+        mouse = pygame.mouse.get_pos()
+
+        if (k[pygame.K_l]):
+            cb4x3= (255, 0, 0)
+
+        #bottons code
+        if (mouse[0]>590 and mouse[0]<690):  
+            if (mouse[1]>240 and mouse[1]<277):
+                cb4x3 = (255, 0, 0)
+            if (mouse[1]>290 and mouse[1]<327):
+                cb4x4 = (255, 0, 0)
+            if (mouse[1]>340 and mouse[1]<377):
+                cb5x4 = (255, 0, 0)
+            if (mouse[1]>390 and mouse[1]<427):
+                cb6x5 = (255, 0, 0)
+            if (mouse[1]>440 and mouse[1]<477):
+                cb6x6 = (255, 0, 0)
+            if (mouse[1]>540 and mouse[1]<577):
+                cbexit = (255, 0, 0)
+        
 
         #botton 4x3
         pygame.draw.rect(screen, cb4x3, (590, 240, 100, 37), 2)
