@@ -3,42 +3,51 @@ import pygame
 import pygame.freetype
 import game
 
+#global variables
 ingame = False
 x = 0
 firsttime = 0
 t = 0
 clicked = 0
-deck =[ [0,0,0],[0,0,0],[0,0,0],[0,0,0] ]
+deck =[ 0]
+ind =[0]
 
-def playgame(screen, font, deck):
+#essentials to play the game
+def playgame(screen, font, deck, ind):
         global ingame
         global x
         global clicked
         global t
-        
-        ingame = game.create(x, screen, font, deck)
-        if (t<300 and game.clicked != 0 and game.deck[game.card[0]][game.card[1]] != 0):
+
+        ingame = game.create(x, screen, font, deck, ind)
+        if (t<300 and game.clicked != 0 and game.deck[ind[game.card[0]][game.card[1]]] != 0):
             t=t+1
             crect=55 + game.card[1]*game.c + game.card[1]*10
             lrect=405 + game.card[0]*game.l + game.card[0]*10
-            game.cart(game.deck[game.card[0]][game.card[1]], game.isinbotton(crect, lrect), lrect, crect, game.l, game.c, screen)
+            game.cart(game.deck[ind[game.card[0]][game.card[1]]], game.isinbotton(crect, lrect), lrect, crect, game.l, game.c, screen)
             if (game.clicked1 != 0):
                 crect1=55 + game.card[3]*game.c + game.card[3]*10
                 lrect1=405 + game.card[2]*game.l + game.card[2]*10
-                game.cart(game.deck[game.card[2]][game.card[3]], game.isinbotton(crect1, lrect1), lrect1, crect1, game.l, game.c, screen)
+                game.cart(game.deck[ ind[game.card[2]] [game.card[3]] ], game.isinbotton(crect1, lrect1), lrect1, crect1, game.l, game.c, screen)
 
         else:
             t=0
             game.setclick(0)
+            game.primeirav = 0
 
         k = pygame.key.get_pressed()
         if (k[pygame.K_l]):
-            pygame.draw.rect(screen, (255, 255, 255), ( 405, 55, 480/4 -10, 600/3 -10), 2)
+            pygame.draw.rect(screen, (255, 0, 0), ( 405, 55, 480/4 -10, 600/3 -10), 10)
 
+        if (game.wincheck(x) == 0):
+            font.render_to(screen, (298.5, 50), "YOU WON", (255, 255, 0),  None, pygame.freetype.STYLE_DEFAULT, 0, 100)
+
+#crete the main menu
 def creatmeno(screen, my_font):
         global ingame
         global x
         global deck
+        global ind
     #main screen creation
         my_font.render_to(screen, (298.5, 50), "Shuffle", (255, 255, 0),  None, pygame.freetype.STYLE_DEFAULT, 0, 100)
 
@@ -60,6 +69,7 @@ def creatmeno(screen, my_font):
                     cb4x3= (255, 0, 0)
                     x = 6
                     deck = game.createdeck(x)
+                    ind = game.indice(x)
                     ingame = True
                         
             if (mouse[1]>290 and mouse[1]<327):
@@ -68,6 +78,7 @@ def creatmeno(screen, my_font):
                     cb4x4= (255, 0, 0)
                     x = 8
                     deck = game.createdeck(x)
+                    ind = game.indice(x)
                     ingame = True
                         
             if (mouse[1]>340 and mouse[1]<377):
@@ -76,6 +87,7 @@ def creatmeno(screen, my_font):
                     cb5x4= (255, 0, 0)
                     x = 10
                     deck = game.createdeck(x)
+                    ind = game.indice(x)
                     ingame = True
                         
             if (mouse[1]>390 and mouse[1]<427):
@@ -84,6 +96,7 @@ def creatmeno(screen, my_font):
                     cb6x5= (255, 0, 0)
                     x = 15
                     deck = game.createdeck(x)
+                    ind = game.indice(x)
                     ingame = True
                         
             if (mouse[1]>440 and mouse[1]<477):
@@ -92,6 +105,7 @@ def creatmeno(screen, my_font):
                     cb6x6= (255, 0, 0)
                     x = 18
                     deck = game.createdeck(x)
+                    ind = game.indice(x)
                     ingame = True
                         
             if (mouse[1]>540 and mouse[1]<577):
@@ -125,7 +139,7 @@ def creatmeno(screen, my_font):
         pygame.draw.rect(screen, cbexit, (590, 540, 100, 37), 2)
         my_font.render_to(screen, (598, 550), "Exit", cbexit,  None, pygame.freetype.STYLE_DEFAULT, 0, 30)
 
-# Define a main function, just to keep things nice and tidy
+# main function
 def main():
     global ingame
 
@@ -158,7 +172,7 @@ def main():
 
         if (ingame == False):
             creatmeno(screen, my_font)
-        else: playgame(screen, my_font, deck)
+        else: playgame(screen, my_font, deck, ind)
 
         pygame.display.flip()
 
