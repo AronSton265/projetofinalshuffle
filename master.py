@@ -17,11 +17,16 @@ def playgame(screen, font, deck):
         global t
         
         ingame = game.create(x, screen, font, deck)
-        if (t<300 and game.clicked != 0):
+        if (t<300 and game.clicked != 0 and game.deck[game.card[0]][game.card[1]] != 0):
             t=t+1
             crect=55 + game.card[1]*game.c + game.card[1]*10
             lrect=405 + game.card[0]*game.l + game.card[0]*10
             game.cart(game.deck[game.card[0]][game.card[1]], game.isinbotton(crect, lrect), lrect, crect, game.l, game.c, screen)
+            if (game.clicked1 != 0):
+                crect1=55 + game.card[3]*game.c + game.card[3]*10
+                lrect1=405 + game.card[2]*game.l + game.card[2]*10
+                game.cart(game.deck[game.card[2]][game.card[3]], game.isinbotton(crect1, lrect1), lrect1, crect1, game.l, game.c, screen)
+
         else:
             t=0
             game.setclick(0)
@@ -62,6 +67,7 @@ def creatmeno(screen, my_font):
                 if (pygame.mouse.get_pressed()[0]):
                     cb4x4= (255, 0, 0)
                     x = 8
+                    deck = game.createdeck(x)
                     ingame = True
                         
             if (mouse[1]>340 and mouse[1]<377):
@@ -69,6 +75,7 @@ def creatmeno(screen, my_font):
                 if (pygame.mouse.get_pressed()[0]):
                     cb5x4= (255, 0, 0)
                     x = 10
+                    deck = game.createdeck(x)
                     ingame = True
                         
             if (mouse[1]>390 and mouse[1]<427):
@@ -76,6 +83,7 @@ def creatmeno(screen, my_font):
                 if (pygame.mouse.get_pressed()[0]):
                     cb6x5= (255, 0, 0)
                     x = 15
+                    deck = game.createdeck(x)
                     ingame = True
                         
             if (mouse[1]>440 and mouse[1]<477):
@@ -83,6 +91,7 @@ def creatmeno(screen, my_font):
                 if (pygame.mouse.get_pressed()[0]):
                     cb6x6= (255, 0, 0)
                     x = 18
+                    deck = game.createdeck(x)
                     ingame = True
                         
             if (mouse[1]>540 and mouse[1]<577):
