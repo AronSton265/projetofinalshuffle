@@ -1,4 +1,4 @@
-# Import pygame into our program
+# Imports
 import pygame
 import pygame.freetype
 import game
@@ -37,7 +37,7 @@ def playgame(screen, font, deck, ind):
             game.primeirav = 0
 
         if (game.wincheck(x) == 0):
-            font.render_to(screen, (298.5, 50), "YOU WON", (255, 255, 0),  None, pygame.freetype.STYLE_DEFAULT, 0, 100)
+            font.render_to(screen, (340, 300), "YOU WON", (255, 255, 0),  None, pygame.freetype.STYLE_DEFAULT, 0, 100)
 
 #crete the main menu
 def creatmeno(screen, my_font):
