@@ -5,11 +5,27 @@ import game
 
 ingame = False
 x = 0
+firsttime = 0
+t = 0
+clicked = 0
+deck =[ [0,0,0],[0,0,0],[0,0,0],[0,0,0] ]
 
-def playgame(screen, font):
+def playgame(screen, font, deck):
         global ingame
         global x
-        ingame = game.create(x, screen, font)
+        global clicked
+        global t
+        
+        ingame = game.create(x, screen, font, deck)
+        if (t<300 and game.clicked != 0):
+            t=t+1
+            crect=55 + game.card[1]*game.c + game.card[1]*10
+            lrect=405 + game.card[0]*game.l + game.card[0]*10
+            game.cart(game.deck[game.card[0]][game.card[1]], game.isinbotton(crect, lrect), lrect, crect, game.l, game.c, screen)
+        else:
+            t=0
+            game.setclick(0)
+
         k = pygame.key.get_pressed()
         if (k[pygame.K_l]):
             pygame.draw.rect(screen, (255, 255, 255), ( 405, 55, 480/4 -10, 600/3 -10), 2)
@@ -17,6 +33,7 @@ def playgame(screen, font):
 def creatmeno(screen, my_font):
         global ingame
         global x
+        global deck
     #main screen creation
         my_font.render_to(screen, (298.5, 50), "Shuffle", (255, 255, 0),  None, pygame.freetype.STYLE_DEFAULT, 0, 100)
 
@@ -37,6 +54,7 @@ def creatmeno(screen, my_font):
                 if (pygame.mouse.get_pressed()[0]):
                     cb4x3= (255, 0, 0)
                     x = 6
+                    deck = game.createdeck(x)
                     ingame = True
                         
             if (mouse[1]>290 and mouse[1]<327):
@@ -131,7 +149,7 @@ def main():
 
         if (ingame == False):
             creatmeno(screen, my_font)
-        else: playgame(screen, my_font)
+        else: playgame(screen, my_font, deck)
 
         pygame.display.flip()
 
