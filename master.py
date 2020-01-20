@@ -11,6 +11,7 @@ t = 0
 clicked = 0
 deck =[ 0]
 ind =[0]
+music = 1
 
 #essentials to play the game
 def playgame(screen, font, deck, ind):
@@ -34,10 +35,6 @@ def playgame(screen, font, deck, ind):
             t=0
             game.setclick(0)
             game.primeirav = 0
-
-        k = pygame.key.get_pressed()
-        if (k[pygame.K_l]):
-            pygame.draw.rect(screen, (255, 0, 0), ( 405, 55, 480/4 -10, 600/3 -10), 10)
 
         if (game.wincheck(x) == 0):
             font.render_to(screen, (298.5, 50), "YOU WON", (255, 255, 0),  None, pygame.freetype.STYLE_DEFAULT, 0, 100)
@@ -142,6 +139,7 @@ def creatmeno(screen, my_font):
 # main function
 def main():
     global ingame
+    global music
 
     # Initialize pygame, with the default parameters
     pygame.init()
@@ -153,6 +151,9 @@ def main():
     screen = pygame.display.set_mode(res)
     my_font = pygame.freetype.Font("HOMOARAK.ttf", 24)
 
+    #starts the music
+    pygame.mixer.music.load('bensound-enigmatic.ogg')
+    pygame.mixer.music.play(-1)
 
     # Game loop, runs forever
     while (True):
@@ -164,6 +165,14 @@ def main():
                 exit()
 
             if (event.type == pygame.KEYDOWN):
+                if(event.key == pygame.K_m):
+                    if(music ==1):
+                        pygame.mixer.music.stop()
+                        music=0
+                    else:
+                        pygame.mixer.music.load('bensound-enigmatic.ogg')
+                        pygame.mixer.music.play(-1)
+                        music=1
                 if(event.key == pygame.K_ESCAPE):
                     exit()
 

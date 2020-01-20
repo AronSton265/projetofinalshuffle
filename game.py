@@ -15,7 +15,7 @@ ind =[0]
 relesed=0
 penalty=0
 
-#verefys if the player find all the cards
+#verefys if the player finded all the cards
 def wincheck (x):
     global deck
     i=0
@@ -411,7 +411,7 @@ def create(x, screen, font, deck, ind):
                         ccarta = (255, 255, 255)
                         if (pygame.mouse.get_pressed()[0]):
                             if (clicked == 0):
-                                cart(deck[ind], True, lrect, crect, l, c, screen)
+                                cart(deck[ind[i][j]], True, lrect, crect, l, c, screen)
                                 clicked = 1
                                 card[0]=i
                                 card[1]=j
